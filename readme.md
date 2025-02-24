@@ -41,6 +41,11 @@ add_action('enqueue_block_editor_assets', 'bootstrap_enqueue_editor_scripts');
 Speichere alle Änderungen – das Plugin ist nun installiert und einsatzbereit!
 
 
+## 4. Demo ansehen
+
+Eine kurze Demo, um zu sehen, wie das Plugin funktioniert, findest du unten:
+
+
 <p align="center">
   <img src="https://github.com/alghanim-lab/tankstelle-block/blob/main/img/plugin-demo.gif" width="800" height="400" title="Tankstellen in Köln">
   <!-- <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text"> -->
