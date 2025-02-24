@@ -40,8 +40,16 @@ add_action('enqueue_block_editor_assets', 'bootstrap_enqueue_editor_scripts');
 
 Speichere alle Änderungen – das Plugin ist nun installiert und einsatzbereit!
 
+## 4. Benutzerfunktionen
+Der Nutzer kann folgende Aktionen durchführen:
+- Den Titel des Blocks umbenennen
+- Koordinaten ein- oder ausblenden
+- Nach einer Tankstelle durch deren Straßennamen suchen
+- Die maximale Anzahl der Karten (Tankstellen) bestimmen
+- Die Sortierung A-Z und umgekehrt Z-A nach den Straßennamen durchführen
 
-## 4. Demo ansehen
+
+## 5. Demo ansehen
 
 Eine kurze Demo, um zu sehen, wie das Plugin funktioniert, findest du unten:
 
