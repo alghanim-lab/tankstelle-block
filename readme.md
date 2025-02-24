@@ -47,6 +47,6 @@ Eine kurze Demo, um zu sehen, wie das Plugin funktioniert, findest du unten:
 
 
 <p align="center">
-  <img src="https://github.com/alghanim-lab/tankstelle-block/blob/main/img/plugin-demo.gif" width="800" height="400" title="Tankstellen in Köln">
+  <img src="https://github.com/alghanim-lab/tankstelle-block/blob/main/img/plugin-demo.gif" width="1200" height="600" title="Tankstellen in Köln">
   <!-- <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text"> -->
 </p>
