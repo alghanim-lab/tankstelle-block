@@ -19,11 +19,14 @@ Füge die folgenden Funktionen in die `functions.php`-Datei deines Themes oder C
 ### WordPress Bootstrap für das Frontend
 
 ```php
-function bootstrap_enqueue_scripts() {
-    wp_enqueue_style('bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
-    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', array(), false, true);
+function enqueue_bootstrap_for_tankstellen_block($block_content, $block) { 
+    if (isset($block['blockName']) && $block['blockName'] === 'create-block/tankstelle-block') { 
+        wp_enqueue_style('bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+        wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js', array(), false, true);
+    }
+    return $block_content;
 }
-add_action('wp_enqueue_scripts', 'bootstrap_enqueue_scripts');
+add_filter('render_block', 'enqueue_bootstrap_for_tankstellen_block', 10, 2);
 ```
 
 ### WordPress Bootstrap für den Editor (Backend)
