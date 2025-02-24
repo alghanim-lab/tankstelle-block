@@ -1,6 +1,12 @@
 
 # Tankstellen-in-Köln 
 
+<p align="center">
+  <img src="https://github.com/alghanim-lab/tankstelle-block/blob/main/img/plugin-demo.gif"  title="Tankstellen in Köln">
+  <!-- <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text"> -->
+</p>
+
+
 === Tankstelle Block ===
 Contributors:      The WordPress Contributors
 Tags:              block
