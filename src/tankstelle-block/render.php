@@ -1,22 +1,31 @@
 <?php
 
-// Block-Attribute abrufen und Standardwerte setzen
 $title = isset($attributes['title']) ? esc_html($attributes['title']) : 'Tankstellen Informationen';
 $showCoordinates = isset($attributes['showCoordinates']) ? $attributes['showCoordinates'] : true;
-$maxItems = isset($attributes['maxItems']) ? intval($attributes['maxItems']) : 5;
-$sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'asc'; // Standardmäßig aufsteigend sortieren
+$maxItems = isset($attributes['maxItems']) ? $attributes['maxItems'] : 5; 
+$sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'asc'; // Standardmäßig aufsteigend sortieren // $_Get verabeitet Daten aus der URL
 
 // JSON-Daten decodieren, falls vorhanden
 $decodedData = !empty($attributes['fallbackData']) ? json_decode($attributes['fallbackData'], true) : [];
 
+
+// error_log('Test: PHP-Logging funktioniert!');
+//https://ghanim-solution.de/wp-content/plugins/tankstelle-block/src/tankstelle-block/render.php
+
 $block_id = uniqid("tankstellen_block_");
 
-// Sortierfunktion für die Straßenname
+error_log('Vor Sortierung: ' . print_r($decodedData, true));
+
+// Sortierfunktion für die Straßenname alphabetisch
 usort($decodedData, function ($a, $b) use ($sortOrder) {
-    $streetA = strtolower(explode(" ", $a['attributes']['adresse'])[0]);
-    $streetB = strtolower(explode(" ", $b['attributes']['adresse'])[0]);
-    return $sortOrder === "asc" ? strcmp($streetA, $streetB) : strcmp($streetB, $streetA);
+    $streetA = strtolower(explode(" ", $a['attributes']['adresse'])[0]); // teilt die Adresse in ein Array, indem sie an Leerzeichen getrennt wird:
+    $streetB = strtolower(explode(" ", $b['attributes']['adresse'])[0]); // [0] nimmt das erste Element des Arrays – das ist der Straßenname 
+    return $sortOrder === "asc" ? strcmp($streetA, $streetB) : strcmp($streetB, $streetA); //  prüft, ob die Sortierreihenfolge aufsteigend (asc) ist. Falls ja: A-Z sonst Z-A 
 });
+
+error_log('Nach Sortierung: ' . print_r($decodedData, true));
+
+
 
 $display_data = '<div class="container mt-4">';
 $display_data .= '<h3 class="fw-bold">' . esc_html($title) . '</h3>';
@@ -44,6 +53,8 @@ if (is_array($decodedData) && !empty($decodedData)) {
         $adresse = $item['attributes']['adresse'] ?? 'Keine Adresse';
         $x = $item['geometry']['x'] ?? 0;
         $y = $item['geometry']['y'] ?? 0;
+
+        // file_put_contents(ABSPATH . 'wp-content/debug.log', "Meine Debug-Nachricht\n", FILE_APPEND);
 
         preg_match('/(.+?) (\d+)\s?\((\d{5}) (.+)\)/', $adresse, $addressParts);
         $street = $addressParts[1] ?? $adresse;
