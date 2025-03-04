@@ -1,4 +1,4 @@
-import React from "react";
+//Komponente zur Darstellung einer einzelnen Tankstellen-Karteimport React from "react";
 
 const FuelStationCard = ({ objectid, adresse, x, y, showCoordinates }) => {
     // Adresse in Bestandteile zerlegen

@@ -1,3 +1,5 @@
+ <!-- PHP-Rendering der Daten im Backend -->
+
 <?php
 // Setze den Titel: Falls im Attribut vorhanden, wird dieser sicher ausgegeben, ansonsten der Standardtitel "Tankstellen Informationen"
 $title = isset($attributes['title']) ? esc_html($attributes['title']) : 'Tankstellen Informationen';

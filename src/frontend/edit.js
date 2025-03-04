@@ -2,18 +2,20 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { useEffect, useState } from '@wordpress/element';
 import { fetchFuelData } from './fetchData';
 import { filterStations, sortStations } from './filterSort';
-import { CustomInspectorControls } from './InspectorControls';
-import BlockContent  from './BlockContent';
-
+import { CustomInspectorControls } from './components/InspectorControls';
+import BlockContent from './components/BlockContent';
 
 const Edit = ({ attributes, setAttributes }) => {
+    // Extrahiert die gespeicherten Attribute aus dem Block
     const { fallbackData, title, maxItems, showCoordinates } = attributes;
-    
-    const [data, setData] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [sortOrder, setSortOrder] = useState("asc");
-    const [loading, setLoading] = useState(true);
 
+    // React State für Daten, Suchbegriff, Sortierung und Ladezustand
+    const [data, setData] = useState([]); // Speichert die Tankstellen-Daten
+    const [searchTerm, setSearchTerm] = useState(""); // Suchbegriff für die Filterung
+    const [sortOrder, setSortOrder] = useState("asc"); // Sortierungsreihenfolge
+    const [loading, setLoading] = useState(true); // Zeigt an, ob Daten noch geladen werden
+
+    // useEffect lädt die Daten bei der ersten Ausführung oder wenn `fallbackData` sich ändert
     useEffect(() => {
         const loadData = async () => {
             await fetchFuelData(fallbackData, setAttributes, setData);
@@ -22,6 +24,7 @@ const Edit = ({ attributes, setAttributes }) => {
         loadData();
     }, [fallbackData]);
 
+    // Filtern und Sortieren der Tankstellen-Daten
     const filteredData = filterStations(data, searchTerm);
     const sortedData = sortStations(filteredData, sortOrder);
 
@@ -31,6 +34,7 @@ const Edit = ({ attributes, setAttributes }) => {
                 <p>Daten werden geladen...</p>
             ) : (
                 <>
+                    {/* Steuerungselemente für Benutzer */}
                     <CustomInspectorControls 
                         attributes={attributes} 
                         setAttributes={setAttributes} 
@@ -38,6 +42,8 @@ const Edit = ({ attributes, setAttributes }) => {
                         setSortOrder={setSortOrder} 
                         data={data}
                     />
+                    
+                    {/* Anzeige der gefilterten und sortierten Tankstellen */}
                     <BlockContent 
                         title={title} 
                         searchTerm={searchTerm} 

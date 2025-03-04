@@ -45,8 +45,9 @@ add_action( 'init', 'create_block_tankstelle_block_block_init' );
 
 function render_tankstelle_block($attributes) {
     ob_start(); // Das speichert die HTML-Ausgabe von render.php und gibt sie als String zurück.
-    include plugin_dir_path(__FILE__) . 'src/render.php'; // Das lädt render.php sicher innerhalb von WordPress.
+    include plugin_dir_path(__FILE__) . 'src/backend/render.php'; // Das lädt render.php sicher innerhalb von WordPress.
     return ob_get_clean(); // Das speichert die HTML-Ausgabe von render.php und gibt sie als String zurück.
 }
 
 
+// wp_enqueue_script('tankstelle-script', plugin_dir_url(__FILE__) . 'src/backend/script.js', array('wp-blocks', 'wp-element', 'wp-editor'), true);

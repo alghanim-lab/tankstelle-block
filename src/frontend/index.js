@@ -1,3 +1,5 @@
+
+// Haupteinstiegspunkt für den Block
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -14,11 +16,12 @@ import { registerBlockType } from '@wordpress/blocks';
  */
 import './style.scss';
 
+
 /**
  * Internal dependencies
  */
 import Edit from './edit';
-import metadata from './block.json';
+import metadata from '../block.json';
 
 // All block icons should be 24 pixels square. Note the viewBox parameter in developer.wordpress.org/block-editor/getting-started/tutorial/. 
 const tankstelleIcon = (
